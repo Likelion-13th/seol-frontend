@@ -13,12 +13,13 @@
 
 }
 .Footer-title{
-    font: size 1.2rem;
-    font-family:'KaiseoDecol-Regular' ;
+    font-size: 25px;
+    font-family:'NanumMyeongjo';
+   
 
 }
 .Footer-subtitle{
-    font: size 1.2rem;
+    font-size: 1.2rem;
     font-family:'KaiseoDecol-Regular' ;
 
 }
@@ -27,13 +28,7 @@
     flex-direction: column;
     gap:16px;
 }
-.Footer-title{
-    font-size: 1.2rem;
-    font-family: 'KaiseoDecol-Regular';
-}
-.Footer-subtitle{
-    font-family: 'NanumMyeongjo';
-}
+
 .info-text-wrapper{
     display: flex;
     gap: 16px;

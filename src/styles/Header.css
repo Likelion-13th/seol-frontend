@@ -1,10 +1,17 @@
-.Header-container {
+
+@font-face {
+    font-family:'KaiseoDecol-Regular' ;
+    src: url("../../public/font/KaiseiDecol-Regular.ttf")format("truetype");
+    font-family:'NanumMyeongjo' ;
+    src: url("../../public/font/NanumMyeongjo-Regular.ttf")format("truetype");
+}.Header-container {
     background-color: #B8BAC6; /* 기본 배경색 */
     display: flex;
     gap: 20px;
     font-size: 20px;
     justify-content: space-between;
     align-items: center;
+    font-family:'NanumMyeongjo';
 }
 
 .Header-container.mypage-header {
