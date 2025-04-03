@@ -12,7 +12,12 @@
     padding: 52px 72px;
 
 }
-.Footer.title{
+.Footer-title{
+    font: size 1.2rem;
+    font-family:'KaiseoDecol-Regular' ;
+
+}
+.Footer-subtitle{
     font: size 1.2rem;
     font-family:'KaiseoDecol-Regular' ;
 
@@ -22,7 +27,7 @@
     flex-direction: column;
     gap:16px;
 }
-.Footer.title{
+.Footer-title{
     font-size: 1.2rem;
     font-family: 'KaiseoDecol-Regular';
 }

@@ -39,3 +39,9 @@
 body {
     margin: 0; /* body의 기본 마진 제거 */
 }
+@font-face {
+    font-family:'KaiseoDecol-Regular' ;
+    src: url("../../public/font/KaiseiDecol-Regular.ttf")format("truetype");
+    font-family:'NanumMyeongjo' ;
+    src: url("../../public/font/NanumMyeongjo-Regular.ttf")format("truetype");
+}
