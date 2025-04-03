@@ -1,11 +1,16 @@
 import React from 'react';
+import Menu from './Menu';
+import Banner from './Banner';
+import "../../styles/Home.css";
+
 
 const Home =() =>{
     return (
-    <div>
-        <h1>Home</h1>
-        <p>멋쟁이 사자처럼 13기</p>
-    </div>);
+   <div className='home-container'>
+        <Banner/>
+        <Menu/>
+    </div>
+    );
 };
 
 export default Home;
