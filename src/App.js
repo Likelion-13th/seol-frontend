@@ -7,20 +7,25 @@ import Perfume from './pages/ProductPage/Perfume';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import New from './pages/New/New';
+import ToolBar from "./components/ToolBar";
+import AboutUs from "./components/AboutUs"; // 수정: Aboutus → AboutUs
 
 function App() {
   return (
-    <div>
+    <>
       <Header />
+      <ToolBar />
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mypage" element={<Mypage />} />
-        <Route path="/diffuser" element={<Diffuser />} />
-        <Route path="/perfume" element={<Perfume />} />
         <Route path="/new" element={<New />} />
+        <Route path="/perfume" element={<Perfume />} />
+        <Route path="/diffuser" element={<Diffuser />} />
       </Routes>
+      <AboutUs /> 
       <Footer />
-    </div>
+    </>
   );
 }
 

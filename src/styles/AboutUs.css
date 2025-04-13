@@ -1,0 +1,113 @@
+@font-face {
+  font-family:'KaiseoDecol-Regular' ;
+  src: url("../../public/font/KaiseiDecol-Regular.ttf")format("truetype");
+  font-family:'NanumMyeongjo' ;
+  src: url("../../public/font/NanumMyeongjo-Regular.ttf")format("truetype");
+}
+.aboutus-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  font-family:'KaiseoDecol-Regular' ;
+ 
+}
+
+.aboutus-image {
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+
+.aboutus-img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.aboutus-text {
+  flex: 1;
+  max-width: 50%;
+  position: relative;
+  padding: 0 40px;
+  font-family:'KaiseoDecol-Regular' ;
+}
+
+.aboutus-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1.4;
+  color: #333;
+  margin-left: 60px;
+  font-family:'KaiseoDecol-Regular' ;
+}
+
+.aboutus-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.5rem; /* 텍스트 크기 키움 (1.2rem → 1.5rem) */
+  font-weight: normal;
+  color: black;
+  writing-mode: vertical-rl;
+  letter-spacing: 2px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end; /* 중앙 정렬에서 하단 정렬로 변경 */
+  padding-bottom: 20px; /* 하단 여백 추가로 더 아래로 내림 */
+  font-family:'KaiseoDecol-Regular' ;
+}
+
+.aboutus-description {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #666;
+  margin-left: 60px;
+  font-family:'KaiseoDecol-Regular' ;
+
+}
+
+@media (max-width: 768px) {
+  .aboutus-container {
+    flex-direction: column;
+    padding: 20px;
+    font-family:'KaiseoDecol-Regular' ;
+  }
+
+  .aboutus-image {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .aboutus-text {
+    max-width: 100%;
+    padding: 0;
+    position: relative;
+    font-family:'KaiseoDecol-Regular' ;
+  }
+
+  .aboutus-title {
+    font-size: 1.8rem;
+    margin-left: 0;
+    font-family:'KaiseoDecol-Regular' ;
+  }
+
+  .aboutus-label {
+    position: static;
+    writing-mode: horizontal-tb;
+    font-size: 1.2rem; /* 모바일에서는 크기 약간 줄임 */
+    margin: 10px 0;
+    text-align: left;
+    padding-bottom: 0;
+    font-family:'KaiseoDecol-Regular' ;
+  }
+
+  .aboutus-description {
+    font-size: 0.9rem;
+    margin-left: 0;
+    font-family:'KaiseoDecol-Regular' ;
+  }
+  
+}
