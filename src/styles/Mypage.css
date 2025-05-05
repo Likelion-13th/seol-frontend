@@ -1,0 +1,202 @@
+.page-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 80px;
+    font-family: 'NanumMyeingjo', sans-serif;
+}
+.profile-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 50px 0px;
+    border-top: 1px solid #9698A4;
+    border-bottom: 1px solid #9698
+}
+.profile-section{
+    width: 33%;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: 400;
+    border-left: 1px solid #9698A4;
+}
+.profile-section:first-child{
+    border:none;
+}
+.profile-name{
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    height: 40px;
+}
+.profile-realname{
+    font-weight: 600;
+}
+.profile-stat-label{
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+.profile-stat-value{
+    font-weight: 600;
+}
+.address-container-wrap{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+.address-title{
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px; /* 타이틀과 첫 번째 섹션 간 간격 조정 */
+}
+.address-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* 세로 배치 */
+}
+.address-section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* 모든 섹션 간 일정한 간격 */
+}
+.address-button {
+    height: 40px;
+    background-color: #3a3a3a;
+    border: 1px solid #3a3a3a;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    width: 100px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 10px; /* 버튼과 입력란 간 수평 간격 */
+}
+.address-post {
+    width: 80px;
+}
+.address-base {
+    width: 800px;
+}
+.address-detail {
+    width: 500px;
+    margin-right: 10px; /* 상세 주소와 저장 버튼 간 간격 */
+}
+.address-post-input, .address-input-base, .address-input-detail {
+    width: 100%;
+    height: 40px;
+    border: 2px solid #9698A4;
+    border-radius: 5px;
+}
+.address-save-button {
+    height: 40px;
+    background-color: #3a3a3a;
+    border: 1px solid #3a3a3a;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    width: 80px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+.history-container-wrap{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+.history-title{
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.history-container{
+    width: 100%;
+    border: 1px solid #9698A4;
+}
+.history-table{
+    width: 100%;
+    border: 1px solid #9698A4;
+}
+.history-table th{
+    border: 1px solid #9697A4;
+    font-weight: 600;
+}
+.history-table td{
+    text-align: center;
+    border: 1px solid #9697A4;
+}
+.history-cancel{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.history-cancel-button{
+    width:80px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3a3a3a;
+    border: 1px solid #3a3a3a;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.status-container-wrap{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+.status-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 50px 0px;
+    border-top: 1px solid #9698A4;
+    border-bottom: 1px solid #9698
+}
+.status-section{
+    width: 33%;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: 400;
+    border-left: 1px solid #9698A4;
+}
+.status-section:first-child{
+    border:none;
+}
+.status-stat-label{
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+.status-stat-value{
+    font-weight: 600;
+}
+.status-title{
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px; /* 타이틀과 첫 번째 섹션 간 간격 조정 */
+}

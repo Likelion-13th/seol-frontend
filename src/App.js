@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import New from './pages/New/New';
 import ToolBar from "./components/ToolBar";
-import AboutUs from "./components/AboutUs"; // 수정: Aboutus → AboutUs
+ // 수정: Aboutus → AboutUs
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         <Route path="/perfume" element={<Perfume />} />
         <Route path="/diffuser" element={<Diffuser />} />
       </Routes>
-      <AboutUs /> 
+    
       <Footer />
     </>
   );
