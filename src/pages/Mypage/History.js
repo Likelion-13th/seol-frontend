@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 const History =() =>{
     const oncancel =() => {
         alert("취소");
@@ -21,7 +19,15 @@ const History =() =>{
                 </thead>
                 <tbody>
                     <td>20205-05-01</td>
-                    <td>조던</td>
+                    <td>
+                        <div className='product-info'>
+                            <img src="/img/historyimg.jpg" alt="조던" className='product-image' />
+                            <div className='product-text'>
+                                조던
+                                <div className='history-subtitle'>레트로 하이 OG</div>
+                            </div>
+                        </div>
+                    </td>
                     <td>1</td>
                     <td>135,000</td>
                     <td>배송중</td>
@@ -29,13 +35,20 @@ const History =() =>{
                         <div className='history-cancel'>
                         <div className='history-cancel-button'
                         onClick={oncancel}>취소</div>
-                        
                         </div>
-                        </td>
+                    </td>
                 </tbody>
                 <tbody>
                     <td>20205-05-01</td>
-                    <td>조던</td>
+                    <td>
+                        <div className='product-info'>
+                            <img src="/img/historyimg.jpg" alt="조던" className='product-image' />
+                            <div className='product-text'>
+                                조던
+                                <div className='history-subtitle'>레트로 하이 OG</div>
+                            </div>
+                        </div>
+                    </td>
                     <td>1</td>
                     <td>135,000</td>
                     <td>배송중</td>
@@ -43,13 +56,20 @@ const History =() =>{
                         <div className='history-cancel'>
                         <div className='history-cancel-button'
                         onClick={oncancel}>취소</div>
-                        
                         </div>
-                        </td>
+                    </td>
                 </tbody>
                 <tbody>
                     <td>20205-05-01</td>
-                    <td>조던</td>
+                    <td>
+                        <div className='product-info'>
+                            <img src="/img/historyimg.jpg" alt="조던" className='product-image' />
+                            <div className='product-text'>
+                                조던
+                                <div className='history-subtitle'>레트로 하이 OG</div>
+                            </div>
+                        </div>
+                    </td>
                     <td>1</td>
                     <td>135,000</td>
                     <td>배송중</td>
@@ -57,9 +77,8 @@ const History =() =>{
                         <div className='history-cancel'>
                         <div className='history-cancel-button'
                         onClick={oncancel}>취소</div>
-                        
                         </div>
-                        </td>
+                    </td>
                 </tbody>    
             </table>
        </div>
