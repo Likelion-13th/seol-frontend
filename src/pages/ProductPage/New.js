@@ -11,40 +11,40 @@ const Perfume = () => {
       name: "시레나 오 드 퍼퓸",
       brand: "플로리스 런던",
       price: 297000,
-      imagePath: "/img/diffuser_1.png",
-      isNew: false,
+      imagePath: "/img/perfume_1.png",
+      isNew: true,
     },
     {
       id: 2,
       name: "시레나 오 드 퍼퓸",
       brand: "플로리스 런던",
       price: 297000,
-      imagePath: "/img/diffuser_2.png",
-      isNew: false,
+      imagePath: "/img/perfume_2.png",
+      isNew: true,
     },
     {
       id: 3,
       name: "시레나 오 드 퍼퓸",
       brand: "플로리스 런던",
       price: 297000,
-      imagePath: "/img/diffuser_3.png",
-      isNew: false,
+      imagePath: "/img/perfume_3.png",
+      isNew: true,
     },
     {
       id: 4,
       name: "시레나 오 드 퍼퓸",
       brand: "플로리스 런던",
       price: 297000,
-      imagePath: "/img/diffuser_4.png",
-      isNew: false,
+      imagePath: "/img/perfume_4.png",
+      isNew: true,
     },
     {
       id: 5,
       name: "시레나 오 드 퍼퓸",
       brand: "플로리스 런던",
       price: 297000,
-      imagePath: "/img/diffuser_5.png",
-      isNew: false,
+      imagePath: "/img/perfume_5.png",
+      isNew: true,
     },
   ];
 
@@ -63,7 +63,7 @@ const Perfume = () => {
 
   return (
     <div>
-      <Banner title="Diffuser" imagePath={"/banner_diffuser.jpg"} />
+      <Banner title="New" imagePath={"/banner_diffuser.jpg"} />
       <div className="product-container">
         <div className="product-grid">
           {products.map((product) => (

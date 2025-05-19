@@ -6,7 +6,7 @@ import Diffuser from './pages/ProductPage/Diffuser';
 import Perfume from './pages/ProductPage/Perfume';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import New from './pages/New/New';
+import New from './pages/ProductPage/New';
 import ToolBar from "./components/ToolBar";
  // 수정: Aboutus → AboutUs
 
