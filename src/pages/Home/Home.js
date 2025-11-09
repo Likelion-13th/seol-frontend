@@ -6,23 +6,23 @@ import AboutUs from "../../components/AboutUs.js";
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
-const Home = ({onLoginChange}) => {
-    const [cookies, setCookie] = useCookies(["accessToken"]);
-    const navigate = useNavigate();
+const Home = ({ onLoginChange }) => {
+  const [cookies, setCookie] = useCookies(["accessToken"]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const accessToken = params.get("accessToken");
 
-    useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const accessToken = params.get("accessToken");
+    if (accessToken) {
+      setCookie("accessToken", accessToken, {
+        path: "/",
+        maxAge: 60 * 60 * 24 * 7,
+      });
 
-        if(accessToken) {
-            setCookie("accessToken", accessToken,{
-                path:"/",
-                maxAge: 60 * 60 * 24 * 7,
-            });
-            onLoginChange(true);
-            navigate("/",{replace:true});
-        }
-    }, [setCookie,navigate,onLoginChange]);
+      navigate("/", { replace: true });
+      onLoginChange(true);
+    }
+  }, [setCookie, navigate, onLoginChange]);
     return (
         <>
             <div className='home-container'>
