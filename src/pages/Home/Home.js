@@ -6,7 +6,7 @@ import AboutUs from "../../components/AboutUs.js";
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
-const Home = (onLoginChange) => {
+const Home = ({onLoginChange}) => {
     // eslint-disable-next-line no-unused-vars
   const [cookies, setCookie] = useCookies(["accessToken"]);
   const navigate = useNavigate();
