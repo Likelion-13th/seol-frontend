@@ -1,147 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Banner from "./Banner";
 import ProductCard from "./ProductCard";
 import "../../styles/ProductPage.css";
 import PayModal from "./../../components/PayModal";
+import axios from "axios";
+import { useCookies } from "react-cookie";
 
 const Perfume = () => {
-  const products = [
-    {
-      id: 1,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_1.png",
-      isNew: false,
-    },
-    {
-      id: 2,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_2.png",
-      isNew: false,
-    },
-    {
-      id: 3,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_3.png",
-      isNew: false,
-    },
-    {
-      id: 4,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_4.png",
-      isNew: false,
-    },
-    {
-      id: 5,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_5.png",
-      isNew: false,
-    },
-    {
-      id: 6,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_6.png",
-      isNew: false,
-    },
-    {
-      id: 7,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_7.png",
-      isNew: false,
-    },
-    {
-      id: 8,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_8.png",
-      isNew: false,
-    },
-    {
-      id: 9,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_9.png",
-      isNew: false,
-    },
-    {
-      id: 10,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_10.png",
-      isNew: false,
-    },
-    {
-      id: 11,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_11.png",
-      isNew: false,
-    },
-    {
-      id: 12,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_12.png",
-      isNew: false,
-    },
-    {
-      id: 13,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_13.png",
-      isNew: false,
-    },
-    {
-      id: 14,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_14.png",
-      isNew: false,
-    },
-    {
-      id: 15,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_15.png",
-      isNew: false,
-    },
-  ];
+
+  const [products, setProducts] = useState([]);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1); // 페이징용 상태
-  const itemsPerPage = 5; // 페이지당 15개 상품
+  const itemsPerPage = 5; // 페이지당 5개 상품
+
+  const [cookies] = useCookies(["accessToken"]);
 
   // 페이징 로직
-  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const totalPages = Math.max(1, Math.ceil(products.length / itemsPerPage)); 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentProducts = products.slice(startIndex, endIndex);
 
   const handleCardClick = (product) => {
-    console.log("handleCardClick called:", product); // 디버깅 로그
     setSelectedProduct(product);
+
+    if (typeof cookies.accessToken !== "string") {
+      alert("로그인이 필요합니다");
+      return;
+    }
     setIsModalOpen(true);
   };
 
@@ -156,23 +44,49 @@ const Perfume = () => {
     setCurrentPage(pageNumber);
   };
 
+  useEffect(() => {
+    axios
+      // (1) 왜 수정? : "/categories/1 /items"에 공백이 있어서 잘못된 URL
+      // (2) 안 고치면? : 404 또는 라우팅 에러 발생 가능
+      .get("/categories/3/items", {
+        headers: {
+          accept: "*/*",
+          // Authorization: `Bearer ${cookies.accessToken}`,  // 토큰 필요하면 나중에 추가
+        },
+      })
+      .then((response) => {
+        // (1) 왜 필요? : 서버에서 받은 데이터를 products 상태에 저장해서 렌더링에 사용
+        // (2) 없으면? : products는 계속 빈 배열이라 화면에 아무것도 안 뜸
+        setProducts(response.data.result || []);
+      })
+      .catch((err) => {
+        console.log("CATEGORY API 요청 실패", err);
+      });
+  }, []); // 최초 렌더링 시 한 번만 호출
+
   return (
     <div>
       <Banner title="Perfume" imagePath={"/banner_perfume.jpg"} />
       <div className="product-container">
         <div className="product-grid">
-          {currentProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onClick={() => handleCardClick(product)}
-            />
-          ))}
+          {currentProducts.length === 0 ? (
+            <p>상품이 없습니다.</p>
+          ) : (
+            currentProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onClick={() => handleCardClick(product)}
+              />
+            ))
+          )}
         </div>
       </div>
+
       {isModalOpen && (
         <PayModal product={selectedProduct} onClose={handleCloseModal} />
       )}
+
       {/* 페이징 버튼 */}
       <div className="paging">
         {currentPage > 1 && (
@@ -183,15 +97,21 @@ const Perfume = () => {
             Prev
           </button>
         )}
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
-          <button
-            key={pageNumber}
-            onClick={() => handlePageChange(pageNumber)}
-            className={`paging-button ${currentPage === pageNumber ? "active" : ""}`}
-          >
-            {pageNumber}
-          </button>
-        ))}
+
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+          (pageNumber) => (
+            <button
+              key={pageNumber}
+              onClick={() => handlePageChange(pageNumber)}
+              className={`paging-button ${
+                currentPage === pageNumber ? "active" : ""
+              }`}
+            >
+              {pageNumber}
+            </button>
+          )
+        )}
+
         {currentPage < totalPages && (
           <button
             onClick={() => handlePageChange(currentPage + 1)}

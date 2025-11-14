@@ -1,58 +1,29 @@
-import React, { useState } from "react"; // useState 임포트 추가
+import React, { useState, useEffect } from "react"; // useState 임포트 추가
 import Banner from "./Banner";
 import ProductCard from "./ProductCard";
 import "../../styles/ProductPage.css";
 import PayModal from "./../../components/PayModal";
+import axios from "axios";
+import { useCookies } from "react-cookie";
 
-const Perfume = () => {
-  const products = [
-    {
-      id: 1,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/diffuser_1.png",
-      isNew: false,
-    },
-    {
-      id: 2,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/diffuser_2.png",
-      isNew: false,
-    },
-    {
-      id: 3,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/diffuser_3.png",
-      isNew: false,
-    },
-    {
-      id: 4,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/diffuser_4.png",
-      isNew: false,
-    },
-    {
-      id: 5,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/diffuser_5.png",
-      isNew: false,
-    },
-  ];
+const Diffuser = () => {
 
+  
+
+
+  const [products, setProducts]= useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const[cookies] = useCookies(["accessToken"]);
+  
+  
   const handleCardClick = (product) => {
     setSelectedProduct(product);
+    
+    if(typeof cookies.accessToken !== "string"){
+      alert("로그인이 필요합니다");
+      return;
+    }
     setIsModalOpen(true);
   };
 
@@ -60,6 +31,22 @@ const Perfume = () => {
     setSelectedProduct(null);
     setIsModalOpen(false);
   };
+
+  useEffect(()=> {
+        axios
+      .get("/categories/2/items",{
+        headers:{
+          accept:"*/*",
+          
+        },
+      })
+	    .then((response) => {
+	      setProducts(response.data.result);  
+	    })  
+      .catch((err)=>{
+        console.log("CATEGORORY API 요청 실패",err);
+      });
+  },[])
 
   return (
     <div>
@@ -82,4 +69,4 @@ const Perfume = () => {
   );
 };
 
-export default Perfume;
+export default Diffuser;

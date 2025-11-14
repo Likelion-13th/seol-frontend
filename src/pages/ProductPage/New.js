@@ -1,58 +1,26 @@
-import React, { useState } from "react"; // useState 임포트 추가
+import React, { useState, useEffect } from "react";
 import Banner from "./Banner";
 import ProductCard from "./ProductCard";
 import "../../styles/ProductPage.css";
 import PayModal from "./../../components/PayModal";
+import axios from "axios";
+import { useCookies } from "react-cookie";
 
-const Perfume = () => {
-  const products = [
-    {
-      id: 1,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_1.png",
-      isNew: true,
-    },
-    {
-      id: 2,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_2.png",
-      isNew: true,
-    },
-    {
-      id: 3,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_3.png",
-      isNew: true,
-    },
-    {
-      id: 4,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_4.png",
-      isNew: true,
-    },
-    {
-      id: 5,
-      name: "시레나 오 드 퍼퓸",
-      brand: "플로리스 런던",
-      price: 297000,
-      imagePath: "/img/perfume_5.png",
-      isNew: true,
-    },
-  ];
+const New = () => {
+
+  const [products, setProducts] = useState([]);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [cookies] = useCookies(["accessToken"]);
 
   const handleCardClick = (product) => {
     setSelectedProduct(product);
+
+    if (typeof cookies.accessToken !== "string") {
+      alert("로그인이 필요합니다");
+      return;
+    }
     setIsModalOpen(true);
   };
 
@@ -61,25 +29,50 @@ const Perfume = () => {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    axios
+      .get("/categories/1/items", {
+        headers: {
+          accept: "*/*",
+          // Authorization: `Bearer ${cookies.accessToken}`, // 필요하면 사용
+        },
+      })
+      .then((response) => {
+        // 서버에서 상품 목록 받아서 상태에 저장
+        setProducts(response.data.result || []);
+      })
+      .catch((err) => {
+        console.log("CATEGORY API 요청 실패", err);
+      });
+  }, []); // 컴포넌트 처음 마운트될 때 한 번만 실행
+
   return (
     <div>
-      <Banner title="New" imagePath={"/banner_diffuser.jpg"} />
+      <Banner title="New" imagePath={"/banner_perfume.jpg"} />
       <div className="product-container">
         <div className="product-grid">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onClick={() => handleCardClick(product)} // onClick 추가
-            />
-          ))}
+          {products.length === 0 ? (
+            <p>상품이 없습니다.</p>
+          ) : (
+            products.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onClick={() => handleCardClick(product)}
+              />
+            ))
+          )}
         </div>
       </div>
+
       {isModalOpen && (
-        <PayModal product={selectedProduct} onClose={handleCloseModal} /> // PayModal 추가
+        <PayModal
+          product={selectedProduct}
+          onClose={handleCloseModal}
+        />
       )}
     </div>
   );
 };
 
-export default Perfume;
+export default New;
