@@ -80,7 +80,7 @@ const PayModal = ({ product, onClose }) => {
         alert("주문이 성공적으로 생성되었습니다");
         onClose();
       }else{
-        alert(`주문실패: ${responce.data.message}`);
+        alert(`주문실패: ${response.data.message}`);
         onClose();
       }
     }  catch (error){
