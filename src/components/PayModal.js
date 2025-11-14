@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/PayModal.css";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+
 const PayModal = ({ product, onClose }) => {
   //상태 값이 바뀌면 자동으로 컴포넌트가 다시 렌더링 되도록
   const [cookies] = useCookies(["accessToken"])
@@ -88,6 +89,31 @@ const PayModal = ({ product, onClose }) => {
         alert("결제 처리 중 오류가 발생했습니다.");
       };
     }
+    useEffect (()=> {
+            axios
+                .get("/users/profile", {
+                    headers: {
+                    accept: "*/*",
+                    Authorization: `Bearer ${cookies.accessToken}`,
+                },
+                })
+                .then((response) => {
+                    setProfileData({
+                        usernickname: response.data.result.usernickname,
+                        recentTotal: response.data.result.recentTotal,
+                        maxMileage: response.data.result.maxMileage,
+                    });
+                    setOrderStatusData(response.data.result.orderStatusCounts);
+                })
+                .catch((err) => {
+                console.log("API 요청 실패", err);
+                });
+            }, [cookies.accessToken]);
+
+    const [profileData, setProfileData] = useState({
+    usernickname: "",
+  });
+
 
   return (
     <div className="modal">
@@ -140,7 +166,7 @@ const PayModal = ({ product, onClose }) => {
 				{/* 배송지 정보 */}
         <div className="section">
           <div className="section-title">배송지</div>
-          <div className="user-info">SEOL</div>
+          <div className="user-info">{profileData?.usernickname??""}</div>
           <div className="user-info">010-0000-0000</div>
           <div className="user-info">
             경기도 고양시 덕양구 항공대학로 76 국제은익관 1생활관 F000

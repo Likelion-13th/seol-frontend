@@ -46,23 +46,19 @@ const Perfume = () => {
 
   useEffect(() => {
     axios
-      // (1) 왜 수정? : "/categories/1 /items"에 공백이 있어서 잘못된 URL
-      // (2) 안 고치면? : 404 또는 라우팅 에러 발생 가능
       .get("/categories/3/items", {
         headers: {
           accept: "*/*",
-          // Authorization: `Bearer ${cookies.accessToken}`,  // 토큰 필요하면 나중에 추가
         },
       })
       .then((response) => {
-        // (1) 왜 필요? : 서버에서 받은 데이터를 products 상태에 저장해서 렌더링에 사용
-        // (2) 없으면? : products는 계속 빈 배열이라 화면에 아무것도 안 뜸
+       
         setProducts(response.data.result || []);
       })
       .catch((err) => {
         console.log("CATEGORY API 요청 실패", err);
       });
-  }, []); // 최초 렌더링 시 한 번만 호출
+  }, []); 
 
   return (
     <div>
